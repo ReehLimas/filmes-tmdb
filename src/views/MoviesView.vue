@@ -10,10 +10,8 @@ const isLoading = ref(false);
 
 onMounted(async () => {
   isLoading.value = true;
-  await genreStore.getAllGenres('movie');
   isLoading.value = false;
 });
-
 const listMovies = async (genreId) => {
   isLoading.value = true;
   const response = await api.get('discover/movie', {
@@ -33,7 +31,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR');
   <h1>Filmes</h1>
   <ul class="genre-list">
     <li v-for="genre in genreStore.genres" :key="genre.id" @click="listMovies(genre.id)" class="genre-item">
-      {{ genre.name }} 
+      {{ genre.name }}
     </li>
   </ul>
 
@@ -41,7 +39,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR');
 
   <div class="movie-list">
     <div v-for="movie in movies" :key="movie.id" class="movie-card">
-            
+
       <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title" />
       <div class="movie-details">
         <p class="movie-title">{{ movie.title }}</p>
@@ -52,7 +50,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR');
           </span>
         </p>
       </div>
-            
+
     </div>
   </div>
 </template>
@@ -110,7 +108,7 @@ const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR');
   font-weight: bold;
   line-height: 1.3rem;
   height: 3.2rem;
-}   
+}
 
 .movie-genres {
   display: flex;
